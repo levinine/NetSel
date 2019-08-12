@@ -1,0 +1,700 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Levi9.NetSel</name>
+    </assembly>
+    <members>
+        <member name="T:Levi9.NetSel.ElementsBuilder">
+            <inheritdoc />
+        </member>
+        <member name="M:Levi9.NetSel.ElementsBuilder.RegisterNetSelTypes">
+            <summary>
+            Registers NetSel element types.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.ElementsBuilder.BuildElement(System.Type,OpenQA.Selenium.IWebDriver,OpenQA.Selenium.By)">
+            <summary>
+            Builds NetSel element.
+            </summary>
+            <param name="elementType">Type of element.</param>
+            <param name="driver">Instance of IWebDriver.</param>
+            <param name="selector">Selector of element.</param>
+            <returns>Object.</returns>
+        </member>
+        <member name="T:Levi9.NetSel.Elements.CheckBoxElement">
+            <summary>
+            Contains methods for interaction with check box elements.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.CheckBoxElement.#ctor(OpenQA.Selenium.IWebDriver,OpenQA.Selenium.By)">
+            <summary>
+            Initializes a new instance of the CheckBoxElement class.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.CheckBoxElement.Check">
+            <summary>
+            Checks the element.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.CheckBoxElement.IsChecked">
+            <summary>
+            Checks if element is checked.
+            </summary>
+            <returns>True, if it is checked, otherwise false.</returns>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.CheckBoxElement.Uncheck">
+            <summary>
+            Unchecks the element.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.CheckBoxElement.GetValue">
+            <summary>
+            Returns element value attribute.
+            </summary>
+            <returns>Value of attribute "value".</returns>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.CheckBoxElement.IsEnabled">
+            <summary>
+            Checks is element enabled.
+            </summary>
+            <returns>True if the element is enabled, otherwise false.</returns>
+        </member>
+        <member name="T:Levi9.NetSel.Elements.ClickableElement">
+            <summary>
+            Contains methods for interaction with clickable elements.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.ClickableElement.#ctor(OpenQA.Selenium.IWebDriver,OpenQA.Selenium.By)">
+            <summary>
+            Initializes a new instance of the ClickableElement class.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.ClickableElement.Click">
+            <summary>
+            Clicks on element.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.ClickableElement.IsDisplayed">
+            <summary>
+            Checks if element is displayed.
+            </summary>
+            <returns>True if element is displayed, otherwise false.</returns>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.ClickableElement.IsEnabled">
+            <summary>
+            Checks if element is enabled.
+            </summary>
+            <returns>True if element is enabled, otherwise false.</returns>
+        </member>
+        <member name="T:Levi9.NetSel.Elements.FileUploadElement">
+            <summary>
+            Contains methods for interaction with file upload elements.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.FileUploadElement.#ctor(OpenQA.Selenium.IWebDriver,OpenQA.Selenium.By)">
+            <summary>
+            Initializes a new instance of the FileUploadElement class.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.FileUploadElement.UploadFile(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Uploads a file.
+            </summary>
+            <param name="selector">File input selector.</param>
+            <param name="filePath">Document path.</param>
+        </member>
+        <member name="T:Levi9.NetSel.Elements.HiddenFieldElement">
+            <summary>
+            Contains methods for interaction with hidden field elements.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.HiddenFieldElement.#ctor(OpenQA.Selenium.IWebDriver,OpenQA.Selenium.By)">
+            <summary>
+            Initializes a new instance of the HiddenFieldElement class.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.HiddenFieldElement.SetFieldValue(System.String)">
+            <summary>
+            Sets the value for hidden field.
+            </summary>
+            <param name="value">Value to set.</param>
+        </member>
+        <member name="T:Levi9.NetSel.Elements.InputElement">
+            <summary>
+            Contains methods for interaction with input elements.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.InputElement.#ctor(OpenQA.Selenium.IWebDriver,OpenQA.Selenium.By)">
+            <summary>
+            Initializes a new instance of the InputElement class.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.InputElement.SendKeys(System.String)">
+            <summary>
+            Sends keys to input field.
+            </summary>
+            <param name="keys">Keys to send.</param>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.InputElement.ClearField">
+            <summary>
+            Clears input field content.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.InputElement.ClearAndSendKeys(System.String)">
+            <summary>
+            Clears input field content and sends keys to it.
+            </summary>
+            <param name="keys">Keys to send.</param>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.InputElement.FocusElement">
+            <summary>
+            Puts input field in focus.
+            </summary>
+        </member>
+        <member name="T:Levi9.NetSel.Elements.NetSelElement">
+            <summary>
+            Wrapper class for IWebElement
+            </summary>
+        </member>
+        <member name="F:Levi9.NetSel.Elements.NetSelElement.WebDriver">
+            <summary>
+            Property WebDriver.
+            </summary>
+        </member>
+        <member name="F:Levi9.NetSel.Elements.NetSelElement.ElementSelector">
+            <summary>
+            Property ElementSelector.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.NetSelElement.#ctor(OpenQA.Selenium.IWebDriver,OpenQA.Selenium.By)">
+            <summary>
+            Initializes a new instance of the NetSelElement class.
+            </summary>
+            <param name="webDriver">Instance of IWebDriver.</param>
+            <param name="selector">Element selector.</param>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.NetSelElement.GetAttribute(System.String)">
+            <summary>
+            Returns value of an attribute.
+            </summary>
+            <param name="attribute">Attribute name.</param>
+            <returns>Attribute value.</returns>
+        </member>
+        <member name="P:Levi9.NetSel.Elements.NetSelElement.WebElement">
+            <summary>
+            Returns new instance of IWebElement.
+            </summary>
+        </member>
+        <member name="P:Levi9.NetSel.Elements.NetSelElement.Driver">
+            <summary>
+            Returns WebDriver.
+            </summary>
+        </member>
+        <member name="P:Levi9.NetSel.Elements.NetSelElement.TagName">
+            <summary>
+            Returns WebElement tag name.
+            </summary>
+        </member>
+        <member name="P:Levi9.NetSel.Elements.NetSelElement.Displayed">
+            <summary>
+            Returns whether is element displayed.
+            </summary>
+        </member>
+        <member name="P:Levi9.NetSel.Elements.NetSelElement.Enabled">
+            <summary>
+            Returns whether is element enabled.
+            </summary>
+        </member>
+        <member name="P:Levi9.NetSel.Elements.NetSelElement.Text">
+            <summary>
+            Returns text of an element.
+            </summary>
+        </member>
+        <member name="T:Levi9.NetSel.Elements.RadioButtonElement">
+            <summary>
+            Wrapper class that specifies methods for radio button elements.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.RadioButtonElement.#ctor(OpenQA.Selenium.IWebDriver,OpenQA.Selenium.By)">
+            <summary>
+            Initializes a new instance of the RadioButtonElement class.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.RadioButtonElement.SelectValue">
+            <summary>
+            Selects the element.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.RadioButtonElement.GetValue">
+            <summary>
+            Gets element value attribute.
+            </summary>
+            <returns>Value of element.</returns>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.RadioButtonElement.IsSelected">
+            <summary>
+            Checks if element is selected.
+            </summary>
+            <returns>True if element is selected, otherwise false.</returns>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.RadioButtonElement.SelectByValue(System.Collections.Generic.List{OpenQA.Selenium.IWebElement},System.String)">
+            <summary>
+            Selects the element by value attribute, after iterating through all elements.
+            </summary>
+            <param name="radioButtonList">List of radio button elements.</param>
+            <param name="value">Value of element to select.</param>
+        </member>
+        <member name="T:Levi9.NetSel.Elements.SelectWebElement">
+            <summary>
+            Wrapper class that specifies methods for select elements.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.SelectWebElement.#ctor(OpenQA.Selenium.IWebDriver,OpenQA.Selenium.By)">
+            <summary>
+            Initializes a new instance of the SelectWebElement class.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.SelectWebElement.SelectByText(System.String)">
+            <summary>
+            Selects value in dropdown using text.
+            </summary>
+            <param name="text">Text of option to select.</param>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.SelectWebElement.SelectByValue(System.String)">
+            <summary>
+            Selects value in dropdown using value attribute.
+            </summary>
+            <param name="value">Value of option to select.</param>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.SelectWebElement.SelectMultipleValuesUsingText(System.Collections.Generic.List{System.String})">
+            <summary>
+            Selects multiple values using text.
+            </summary>
+            <param name="values">List of string values to be selected.</param>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.SelectWebElement.DeselectByText(System.String)">
+            <summary>
+            Deselects element using text.
+            </summary>
+            <param name="text">Text of element to be deselected.</param>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.SelectWebElement.DeselectAll">
+            <summary>
+            Deselects all values.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.SelectWebElement.GetSelectedOption">
+            <summary>
+            Returns currently selected option.
+            </summary>
+            <returns>IWebElement that represents currently selected option.</returns>
+        </member>
+        <member name="T:Levi9.NetSel.Elements.TableElement">
+            <summary>
+            Wrapper class that specifies methods for table elements.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.TableElement.#ctor(OpenQA.Selenium.IWebDriver,OpenQA.Selenium.By)">
+            <summary>
+            Initializes a new instance of the TableElement class.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.TableElement.GetCellByContent(System.String)">
+            <summary>
+            Returns cell by its content.
+            </summary>
+            <param name="content">Cell content.</param>
+            <returns>IWebElement that represents searched cell.</returns>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.TableElement.GetCellBySelector(OpenQA.Selenium.By)">
+            <summary>
+            Returns the text of cell by its selector.
+            </summary>
+            <param name="selector">Element selector.</param>
+            <returns>Text of cell.</returns>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.TableElement.GetRowElements">
+            <summary>
+            Returns all row elements.
+            </summary>
+            <returns>List of row elements.</returns>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.TableElement.GetHeaderElements">
+            <summary>
+            Returns all column elements.
+            </summary>
+            <returns>List of all column elements.</returns>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.TableElement.GetRowSize">
+            <summary>
+            Returns number of rows in table.
+            </summary>
+            <returns>Number of rows in table.</returns>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.TableElement.GetColumnSize">
+            <summary>
+            Returns number of columns in table.
+            </summary>
+            <returns>Number of columns in table.</returns>
+        </member>
+        <member name="T:Levi9.NetSel.Elements.TextElement">
+            <summary>
+            Wrapper class that specifies methods for text elements.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.TextElement.#ctor(OpenQA.Selenium.IWebDriver,OpenQA.Selenium.By)">
+            <summary>
+            Initializes a new instance of the TextElement class.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.TextElement.GetValue">
+            <summary>
+            Returns element value attribute.
+            </summary>
+            <returns>Value of attribute "value".</returns>
+        </member>
+        <member name="M:Levi9.NetSel.Elements.TextElement.GetText">
+            <summary>
+            Returns display text of an element. 
+            </summary>
+            <returns>Display text of an element.</returns>
+        </member>
+        <member name="T:Levi9.NetSel.Handlers.FocusHandler">
+            <summary>
+            Contains support methods for handling focus events.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Handlers.FocusHandler.FocusElement(OpenQA.Selenium.IWebDriver,OpenQA.Selenium.IWebElement)">
+            <summary>
+            Method to focus web element.
+            </summary>
+            <param name="webDriver">Instance of IWebDriver.</param>
+            <param name="webElement">Instance of IWebElement.</param>
+        </member>
+        <member name="T:Levi9.NetSel.Handlers.ScreenshotHandler">
+            <summary>
+            Contains support methods for handling screenshots.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Handlers.ScreenshotHandler.CaptureScreenshot(OpenQA.Selenium.IWebDriver,System.String,OpenQA.Selenium.ScreenshotImageFormat)">
+            <summary>
+            Method used for capturing images in currently loaded page.
+            </summary>
+        </member>
+        <member name="T:Levi9.NetSel.Handlers.WindowHandler">
+            <summary>
+            Contains support methods for handling tab events.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Handlers.WindowHandler.SwitchToTab(OpenQA.Selenium.IWebDriver,System.String)">
+            <summary>
+            Switches to the tab by passing the part of URL of wanted tab.
+            </summary>
+            <param name="driver">Instance of IWebDriver.</param>
+            <param name="textPartUrl">URL part of wanted tab.</param>
+        </member>
+        <member name="T:Levi9.NetSel.Handlers.WaitExtensionMethods">
+            <summary>
+            Contains support methods for handling wait events.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Handlers.WaitExtensionMethods.WaitAdditional(System.Double)">
+            <summary>
+            Wait for defined amount of time.
+            </summary>
+            <param name="seconds">Number of seconds to wait for.</param>
+        </member>
+        <member name="M:Levi9.NetSel.Handlers.WaitExtensionMethods.WaitFor(Levi9.NetSel.Elements.NetSelElement,System.TimeSpan)">
+            <summary>
+            Method to create new instance of Wait.
+            </summary>
+            <param name="elem">Web element.</param>
+            <param name="timeoutTime">Time interval.</param>
+            <returns>Instance of Wait.</returns>
+        </member>
+        <member name="M:Levi9.NetSel.Handlers.WaitExtensionMethods.WaitFor(Levi9.NetSel.Elements.NetSelElement[],System.TimeSpan)">
+            <summary>
+            Method to create new instance of Wait.
+            </summary>
+            <param name="elem">Array of web elements.</param>
+            <param name="timeoutTime">Time interval.</param>
+            <returns>Instance of Wait.</returns>
+        </member>
+        <member name="M:Levi9.NetSel.Handlers.WaitExtensionMethods.Until(Levi9.NetSel.Wait,Levi9.NetSel.WaitConditions.IWaitCondition[])">
+            <summary>
+            Method to wait until specified conditions are fulfilled.
+            </summary>
+            <param name="wait">Instance of Wait.</param>
+            <param name="conditions">Array of wait conditions.</param>
+        </member>
+        <member name="T:Levi9.NetSel.IElementsBuilder">
+            <summary>
+            Contains methods for building elements.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.IElementsBuilder.BuildElement(System.Type,OpenQA.Selenium.IWebDriver,OpenQA.Selenium.By)">
+            <summary>
+            Builds new element.
+            </summary>
+            <param name="elementType">Type of element.</param>
+            <param name="driver">Instance of IWebDriver.</param>
+            <param name="selector">Element selector.</param>
+            <returns>Object.</returns>
+        </member>
+        <member name="T:Levi9.NetSel.PageFactory">
+            <summary>
+            Contains PageFactory implementation.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.PageFactory.Configure(System.Func{Levi9.NetSel.PageFactoryConfiguration,Levi9.NetSel.PageFactoryConfiguration})">
+            <summary>
+            Invokes configuration handler.
+            </summary>
+            <param name="configurationHandler">Function for handling configuration.</param>
+        </member>
+        <member name="M:Levi9.NetSel.PageFactory.CreatePage``1(OpenQA.Selenium.IWebDriver)">
+            <summary>
+            Creates instance of page.
+            </summary>
+            <typeparam name="T">Type of page.</typeparam>
+            <param name="driver">Instance of IWebDriver.</param>
+            <returns>Object.</returns>
+        </member>
+        <member name="T:Levi9.NetSel.PageFactoryConfiguration">
+            <summary>
+            PageFactory configuration.
+            </summary>
+        </member>
+        <member name="P:Levi9.NetSel.PageFactoryConfiguration.ElementsBuilder">
+            <summary>
+            Property ElementsBuilder.
+            </summary>
+        </member>
+        <member name="T:Levi9.NetSel.PageFactoryConfigurationExtensionMethods">
+            <summary>
+            Contains extension methods for configuring page factory.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.PageFactoryConfigurationExtensionMethods.ConfigureNetSelElementsBuilder(Levi9.NetSel.PageFactoryConfiguration)">
+            <summary>
+            Configures NetSel element builder.
+            </summary>
+            <param name="configuration">Instance of PageFactoryConfiguration.</param>
+            <returns>Page factory configuration.</returns>
+        </member>
+        <member name="T:Levi9.NetSel.SelectorAttribute">
+            <summary>
+            Page factory selector attribute implementation.
+            </summary>
+        </member>
+        <member name="P:Levi9.NetSel.SelectorAttribute.Type">
+            <summary>
+            Property Type.
+            </summary>
+        </member>
+        <member name="P:Levi9.NetSel.SelectorAttribute.Value">
+            <summary>
+            Property Value.
+            </summary>
+        </member>
+        <member name="T:Levi9.NetSel.SelectorExtensionMethods">
+            <summary>
+            Page factory selector extension methods.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.SelectorExtensionMethods.MapToSeleniumBy(Levi9.NetSel.SelectorAttribute)">
+            <summary>
+            Maps SelectorType to By.
+            </summary>
+            <param name="selector">Instance of SelectorAttribute.</param>
+            <returns>By selector.</returns>
+        </member>
+        <member name="T:Levi9.NetSel.SelectorType">
+            <summary>
+            Element selector types.
+            </summary>
+        </member>
+        <member name="F:Levi9.NetSel.SelectorType.Id">
+            <summary>
+            Select element using Id.
+            </summary>
+        </member>
+        <member name="F:Levi9.NetSel.SelectorType.Name">
+            <summary>
+            Select element using Name.
+            </summary>
+        </member>
+        <member name="F:Levi9.NetSel.SelectorType.TagName">
+            <summary>
+            Select element using TagName.
+            </summary>
+        </member>
+        <member name="F:Levi9.NetSel.SelectorType.ClassName">
+            <summary>
+            Select element using ClassName.
+            </summary>
+        </member>
+        <member name="F:Levi9.NetSel.SelectorType.CssSelector">
+            <summary>
+            Select element using CssSelector.
+            </summary>
+        </member>
+        <member name="F:Levi9.NetSel.SelectorType.LinkText">
+            <summary>
+            Select element using LinkText.
+            </summary>
+        </member>
+        <member name="F:Levi9.NetSel.SelectorType.PartialLinkText">
+            <summary>
+            Select element using PartialLinkText.
+            </summary>
+        </member>
+        <member name="F:Levi9.NetSel.SelectorType.XPath">
+            <summary>
+            Select element using XPath.
+            </summary>
+        </member>
+        <member name="T:Levi9.NetSel.Until">
+            <summary>
+            Contains WaitCondition methods that are used by WaitExtensionMethods.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Until.IsElementPresent(Levi9.NetSel.Elements.NetSelElement)">
+            <summary>
+            Checks if element is present in DOM.
+            </summary>
+            <param name="element">Instance of NetSelElement.</param>
+            <returns>True if present, otherwise false.</returns>
+        </member>
+        <member name="P:Levi9.NetSel.Until.Exists">
+            <summary>
+            Condition to wait until element exists.
+            </summary>
+        </member>
+        <member name="P:Levi9.NetSel.Until.NotExists">
+            <summary>
+            Condition to wait until element does not exist.
+            </summary>
+        </member>
+        <member name="P:Levi9.NetSel.Until.Visible">
+            <summary>
+            Condition to wait until element is visible.
+            </summary>
+        </member>
+        <member name="P:Levi9.NetSel.Until.NotVisible">
+            <summary>
+            Condition to wait until element is not visible.
+            </summary>
+        </member>
+        <member name="P:Levi9.NetSel.Until.Clickable">
+            <summary>
+            Condition to wait until element is clickable.
+            </summary>
+        </member>
+        <member name="P:Levi9.NetSel.Until.NotClickable">
+            <summary>
+            Condition to wait until element is not clickable.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Until.OptionIsSelectedUsingText(System.String)">
+            <summary>
+            Condition to wait until select element option is selected using text.
+            </summary>
+            <param name="text">Text from option that is expected to be selected.</param>
+            <returns>Instance of WaitCondition.</returns>
+        </member>
+        <member name="M:Levi9.NetSel.Until.OptionIsNotSelectedUsingText(System.String)">
+            <summary>
+            Condition to wait until select element option is not selected using text.
+            </summary>
+            <param name="text">Text from option that is not expected to be selected.</param>
+            <returns>Instance of WaitCondition.</returns>
+        </member>
+        <member name="M:Levi9.NetSel.Until.OptionIsSelectedUsingValue(System.String)">
+            <summary>
+            Condition to wait until select element option is selected using value.
+            </summary>
+            <param name="value">Value from option that is expected to be selected.</param>
+            <returns>Instance of WaitCondition.</returns>
+        </member>
+        <member name="M:Levi9.NetSel.Until.OptionIsNotSelectedUsingValue(System.String)">
+            <summary>
+            Condition to wait until select element option is selected using value.
+            </summary>
+            <param name="value">Value from option that is not expected to be selected.</param>
+            <returns>Instance of WaitCondition.</returns>
+        </member>
+        <member name="P:Levi9.NetSel.Until.Selected">
+            <summary>
+            Condition to wait until element is selected.
+            </summary>
+        </member>
+        <member name="P:Levi9.NetSel.Until.NotSelected">
+            <summary>
+            Condition to wait until element is not selected.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Until.TextToBePresentInElement(System.String)">
+            <summary>
+            Condition to wait until specified text is present in element.
+            </summary>
+            <param name="text">Text expected to be present.</param>
+            <returns>Instance of WaitCondition.</returns>
+        </member>
+        <member name="M:Levi9.NetSel.Until.TextNotToBePresentInElement(System.String)">
+            <summary>
+            Condition to wait until specified text is not present in element.
+            </summary>
+            <param name="text">Text expected not to be present.</param>
+            <returns>Instance of WaitCondition.</returns>
+        </member>
+        <member name="T:Levi9.NetSel.Wait">
+            <summary>
+            Wrapper class for Element and DriverWait.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.Wait.#ctor(OpenQA.Selenium.Support.UI.WebDriverWait,System.Collections.Generic.ICollection{Levi9.NetSel.Elements.NetSelElement})">
+            <summary>
+            Initializes a new instance of the Wait class.
+            </summary>
+            <param name="driverWait">Instance of WebDriverWait.</param>
+            <param name="element">Collection of NetSel elements.</param>
+        </member>
+        <member name="P:Levi9.NetSel.Wait.DriverWait">
+            <summary>
+            Property DriverWait.
+            </summary>
+        </member>
+        <member name="P:Levi9.NetSel.Wait.Element">
+            <summary>
+            Property Element.
+            </summary>
+        </member>
+        <member name="T:Levi9.NetSel.WaitConditions.IWaitCondition">
+            <summary>
+            Contains methods specific for wait handling.
+            </summary>
+        </member>
+        <member name="M:Levi9.NetSel.WaitConditions.IWaitCondition.GetCondition">
+            <summary>
+            Returns wait condition.
+            </summary>
+            <returns>Function that represents wait condition.</returns>
+        </member>
+        <member name="T:Levi9.NetSel.WaitConditions.WaitCondition">
+            <inheritdoc />
+        </member>
+        <member name="M:Levi9.NetSel.WaitConditions.WaitCondition.#ctor(System.Func{System.Collections.Generic.ICollection{Levi9.NetSel.Elements.NetSelElement},System.Boolean})">
+            <summary>
+            Initializes a new instance of the WaitCondition class.
+            </summary>
+            <param name="condition">Wait condition.</param>
+        </member>
+        <member name="M:Levi9.NetSel.WaitConditions.WaitCondition.GetCondition">
+            <summary>
+            Returns condition function for WaitExtensionMethods.
+            </summary>
+            <returns>Condition function.</returns>
+        </member>
+    </members>
+</doc>

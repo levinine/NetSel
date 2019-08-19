@@ -13,6 +13,9 @@ clone_folder: C:\netsel1
 environment:
   COVERALLS_REPO_TOKEN:
     secure: h6mvV5hoQ4GdIDvrY2fUEoNFFg94glGed
+
+# Build worker image (VM template)
+image: Visual Studio 2015
     
 install:
 - choco install googlechrome

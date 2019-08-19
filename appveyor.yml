@@ -39,10 +39,10 @@ build_script:
   
 after_build:
 - cmd: >-
-    nuget pack ./src/Levi9.NetSel\Levi9.NetSel.nuspec -Version %appveyor_build_version%
+    nuget pack ./src/Levi9.NetSel/Levi9.NetSel.nuspec -Version %appveyor_build_version%
     
 artifacts:
-- path: src/Levi9.NetSel.2.*.nupkg
+- path: ./src/Levi9.NetSel/Levi9.NetSel.2.*.nupkg
   name: Levi9.NetSel
   
 deploy: off

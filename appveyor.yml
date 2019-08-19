@@ -19,6 +19,12 @@ environment:
 install:
 - choco install googlechrome
 
+before_build:
+  - dotnet restore  
+  - dotnet restore .\src\Levi9.NetSel\Levi9.NetSel.Test
+  - dotnet restore .\src\Levi9.NetSel\Levi9.NetSel.UI.Tests
+  - dotnet restore .\src\Levi9.NetSel\Levi9.NetSel.Unit.Tests
+  
 build:         
   project: .\src\Levi9.NetSel.sln
   

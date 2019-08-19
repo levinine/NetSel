@@ -21,8 +21,8 @@ install:
 
 before_build:
   - dotnet restore .\src\Levi9.NetSel.sln
-  - dotnet restore .\src\Levi9.NetSel\Levi9.NetSel.UI.Tests\Levi9.NetSel.UI.Tests.csproj
-  - dotnet restore .\src\Levi9.NetSel\Levi9.NetSel.Unit.Tests\Levi9.NetSel.Unit.Tests.csproj
+  - dotnet restore .\src\Levi9.NetSel.UI.Tests\Levi9.NetSel.UI.Tests.csproj
+  - dotnet restore .\src\Levi9.NetSel.Unit.Tests\Levi9.NetSel.Unit.Tests.csproj
   
 build:         
   project: .\src\Levi9.NetSel.sln

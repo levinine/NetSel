@@ -27,17 +27,17 @@ To add NetSel in your project by adding NuGet package:
 #### Simple page and test example
 
 ```csharp
-    public class PageExample
-    {
-        [Navigation(BaseUrl = "https://www.ultimateqa.com/", Path = "simple-html-elements-for-automation")]
-        public NavigationHandler Navigation { get; set; }
+public class PageExample
+{
+    [Navigation(BaseUrl = "https://www.ultimateqa.com/", Path = "simple-html-elements-for-automation")]
+    public NavigationHandler Navigation { get; set; }
 
-        [Selector(Type = SelectorType.Id, Value = "button1")]
-        public ClickableElement ClickMeButton { get; set; }
+    [Selector(Type = SelectorType.Id, Value = "button1")]
+    public ClickableElement ClickMeButton { get; set; }
 
-        [Selector(Type = SelectorType.Id, Value = "button1")]
-        public ElementCollection<ClickableElement> ButtonCollection { get; set; }
-    }
+    [Selector(Type = SelectorType.Id, Value = "button1")]
+    public ElementCollection<ClickableElement> ButtonCollection { get; set; }
+}
 ```
 
 ```csharp
@@ -94,59 +94,46 @@ public class CustomElement : NetSelElement
     {
         WebElement.Click();
     }
-
-    public bool CustomIsPresent()
-    {
-        try
-        {
-            WebElement.GetAttribute("");
-            return true;
-        }
-        catch
-        {
-            return false;
-        }
-    }
 }
 ```
 
 Custom elements can be used in the page just as any other elements that are provided by NetSel:
 ```csharp
-    public class PageWithCustomElementExample
-    {
-        [Selector(Type = SelectorType.PartialLinkText, Value = "Create account")]
-        public CustomElement CreateAccountLink { get; set; }
+public class PageWithCustomElementExample
+{
+    [Selector(Type = SelectorType.PartialLinkText, Value = "Create account")]
+    public CustomElement CreateAccountLink { get; set; }
 
-        [Selector(Type = SelectorType.PartialLinkText, Value = "Main Page")]
-        public CustomElement MainPageLink { get; set; }
+    [Selector(Type = SelectorType.PartialLinkText, Value = "Main Page")]
+    public CustomElement MainPageLink { get; set; }
 
-        …
-    }
+    …
+}
 ```
 
 ##### Registering custom elements and configuring PageFactory
 
 ```csharp
-    public class TestWithCustomElementExample : IDisposable
+public class TestWithCustomElementExample : IDisposable
+{
+    private readonly IWebDriver _driver;
+    private readonly PageWithCustomElementExample _pageWithCustomElement;
+
+    public TestWithCustomElementExample()
     {
-        private readonly IWebDriver _driver;
-        private readonly PageWithCustomElementExample _pageWithCustomElement;
-
-        public TestWithCustomElementExample()
+        NetSel.PageFactory.Configure(configuration => new PageFactoryConfiguration
         {
-            NetSel.PageFactory.Configure(configuration => new PageFactoryConfiguration
-            {
-                ElementsBuilder = new ElementsBuilder()
-                    .RegisterNetSelTypes()
-                    .RegisterAdditionalType(typeof(CustomElement), proxy => new CustomElement(proxy))
-            }.ConfigureNetSelHandlerBuilder().ConfigurePageCreation());
+            ElementsBuilder = new ElementsBuilder()
+                .RegisterNetSelTypes()
+                .RegisterAdditionalType(typeof(CustomElement), proxy => new CustomElement(proxy))
+        }.ConfigureNetSelHandlerBuilder().ConfigurePageCreation());
 
-            _driver = new ChromeDriver();
-            _pageWithCustomElement = NetSel.PageFactory.CreatePage<PageWithCustomElementExample>(_driver);
-        }
-
-        [Fact]
-        public void NavigateToCreateAccountPageTest()
-     …
+        _driver = new ChromeDriver();
+        _pageWithCustomElement = NetSel.PageFactory.CreatePage<PageWithCustomElementExample>(_driver);
     }
+
+    [Fact]
+    public void NavigateToCreateAccountPageTest()
+    …
+}
 ```

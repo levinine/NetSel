@@ -13,10 +13,12 @@ namespace Levi9.NetSel.Builders
         /// <summary>
         /// Registers NetSel handler types.
         /// </summary>
-        public void RegisterNetSelHandlerTypes()
+        /// <returns>HandlerBuilder.</returns>
+        public HandlerBuilder RegisterNetSelHandlerTypes()
         {
             _supportedTypesCatalog.Add(typeof(NavigationHandler), proxy => new NavigationHandler((NavigationHandlerProxy)proxy));
             _supportedTypesCatalog.Add(typeof(WindowHandler), proxy => new WindowHandler((WindowHandlerProxy)proxy));
+            return this;
         }
 
         /// <summary>
@@ -24,9 +26,11 @@ namespace Levi9.NetSel.Builders
         /// </summary>
         /// <param name="type">Handler type.</param>
         /// <param name="newInstanceFunc">Delegate responsible for creating new instance of handler.</param>
-        public void RegisterAdditionalType(Type type, Func<IHandlerProxy, object> newInstanceFunc)
+        /// <returns>HandlerBuilder</returns>
+        public HandlerBuilder RegisterAdditionalType(Type type, Func<IHandlerProxy, object> newInstanceFunc)
         {
             _supportedTypesCatalog.Add(type, newInstanceFunc);
+            return this;
         }
 
         /// <summary>

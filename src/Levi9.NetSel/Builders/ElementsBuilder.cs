@@ -13,7 +13,8 @@ namespace Levi9.NetSel.Builders
         /// <summary>
         /// Registers NetSel element types.
         /// </summary>
-        public void RegisterNetSelTypes()
+        /// <returns>ElementsBuilder.</returns>
+        public ElementsBuilder RegisterNetSelTypes()
         {
             _supportedTypesCatalog.Add(typeof(CheckBoxElement), proxy => new CheckBoxElement(proxy));
             _supportedTypesCatalog.Add(typeof(ClickableElement), proxy => new ClickableElement(proxy));
@@ -33,6 +34,7 @@ namespace Levi9.NetSel.Builders
             _supportedTypesCatalog.Add(typeof(ElementCollection<SelectWebElement>), proxy => new ElementCollection<SelectWebElement>(proxy));
             _supportedTypesCatalog.Add(typeof(ElementCollection<TableElement>), proxy => new ElementCollection<TableElement>(proxy));
             _supportedTypesCatalog.Add(typeof(ElementCollection<TextElement>), proxy => new ElementCollection<TextElement>(proxy));
+            return this;
         }
 
         /// <summary>
@@ -40,9 +42,11 @@ namespace Levi9.NetSel.Builders
         /// </summary>
         /// <param name="type">Element type.</param>
         /// <param name="newInstanceFunc">Delegate responsible for creating new instance of NetSel element.</param>
-        public void RegisterAdditionalType(Type type, Func<NetSelElementProxy, object> newInstanceFunc)
+        /// <returns>ElementsBuilder</returns>
+        public ElementsBuilder RegisterAdditionalType(Type type, Func<NetSelElementProxy, object> newInstanceFunc)
         {
             _supportedTypesCatalog.Add(type, newInstanceFunc);
+            return this;
         }
 
         /// <summary>

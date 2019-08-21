@@ -48,7 +48,7 @@ namespace Levi9.NetSel.Unit.Tests
 
             var page = PageFactory.CreatePage<TestPage>(_mockDriver.Object);
 
-            page.TestNavigation.NavigateTo();
+            page.TestNavigation.GoToPage();
             _mockDriver.Verify(x => x.Navigate().GoToUrl("test/demo"), Times.Once);
 
             page.TestElement.WebElement.Submit();

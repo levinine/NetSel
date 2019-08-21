@@ -35,7 +35,7 @@ namespace Levi9.NetSel.Proxies
         /// <summary>
         /// Returns instance of IWebElement.
         /// </summary>
-        public IWebElement GetWebElement() => _webElement ?? (_webElement = _webDriver.FindElement(_elementSelector));
+        public IWebElement GetWebElement() => _webElement ?? _webDriver.FindElement(_elementSelector);
 
         /// <summary>
         /// Returns list of IWebElements.

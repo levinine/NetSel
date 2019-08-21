@@ -23,7 +23,7 @@ namespace Levi9.NetSel.Unit.Tests.Handlers
         public void VerifyBaseUrlIsLoadedFromConfigTest()
         {
             _navigationHandler = new NavigationHandler(new NavigationHandlerProxy(_driverMock.Object, null, null));
-            _navigationHandler.NavigateTo();
+            _navigationHandler.GoToPage();
 
             _driverMock.Verify(x => x.Navigate().GoToUrl("test"), Times.Once);
         }
@@ -32,7 +32,7 @@ namespace Levi9.NetSel.Unit.Tests.Handlers
         public void VerifyBaseUrlFromConstructorPriorityTest()
         {
             _navigationHandler = new NavigationHandler(new NavigationHandlerProxy(_driverMock.Object, "test2", null));
-            _navigationHandler.NavigateTo();
+            _navigationHandler.GoToPage();
 
             _driverMock.Verify(x => x.Navigate().GoToUrl("test2"), Times.Once);
         }
@@ -41,7 +41,7 @@ namespace Levi9.NetSel.Unit.Tests.Handlers
         public void VerifyPathFromConstructorIsAppliedTest()
         {
             _navigationHandler = new NavigationHandler(new NavigationHandlerProxy(_driverMock.Object, null, "/demo"));
-            _navigationHandler.NavigateTo();
+            _navigationHandler.GoToPage();
 
             _driverMock.Verify(x => x.Navigate().GoToUrl("test/demo"), Times.Once);
         }
@@ -50,7 +50,7 @@ namespace Levi9.NetSel.Unit.Tests.Handlers
         public void VerifyBaseUrlAndPathFromConstructorAreAppliedTest()
         {
             _navigationHandler = new NavigationHandler(new NavigationHandlerProxy(_driverMock.Object, "test2", "/demo"));
-            _navigationHandler.NavigateTo();
+            _navigationHandler.GoToPage();
 
             _driverMock.Verify(x => x.Navigate().GoToUrl("test2/demo"), Times.Once);
         }

@@ -24,7 +24,7 @@ namespace Levi9.NetSel.UI.Tests.Tests
         [Fact]
         public void TestCollectionWaitUntilNotPresent()
         {
-            _homePage.Navigation.NavigateTo();
+            _homePage.Navigation.GoToPage();
 
             Assert.Throws<WebDriverTimeoutException>(() => _homePage.ButtonCollection.WaitFor(TimeSpan.FromSeconds(15)).UntilCollectionNotContainsElements());
         }
@@ -32,7 +32,7 @@ namespace Levi9.NetSel.UI.Tests.Tests
         [Fact]
         public void TestElementWaitUntilClickable()
         {
-            _homePage.Navigation.NavigateTo();
+            _homePage.Navigation.GoToPage();
 
             _homePage.ClickMeButton.WaitFor(TimeSpan.FromSeconds(5)).Until(Until.Clickable);
         }

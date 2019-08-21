@@ -97,24 +97,10 @@ public class CustomElement : NetSelElement
 }
 ```
 
-Custom elements can be used in the page just as any other elements that are provided by NetSel:
-```csharp
-public class PageWithCustomElementExample
-{
-    [Selector(Type = SelectorType.PartialLinkText, Value = "Create account")]
-    public CustomElement CreateAccountLink { get; set; }
-
-    [Selector(Type = SelectorType.PartialLinkText, Value = "Main Page")]
-    public CustomElement MainPageLink { get; set; }
-
-    …
-}
-```
-
 ##### Registering custom elements and configuring PageFactory
 
 ```csharp
-public class TestWithCustomElementExample : IDisposable
+public class TestWithCustomElementExample
 {
     private readonly IWebDriver _driver;
     private readonly PageWithCustomElementExample _pageWithCustomElement;
@@ -134,6 +120,20 @@ public class TestWithCustomElementExample : IDisposable
 
     [Fact]
     public void NavigateToCreateAccountPageTest()
+    …
+}
+```
+
+Now, when steps above have been finalized, the custom element may be used in a simple manner same as using any other NetSel element in the page:
+```csharp
+public class PageWithCustomElementExample
+{
+    [Selector(Type = SelectorType.PartialLinkText, Value = "Create account")]
+    public CustomElement CreateAccountLink { get; set; }
+
+    [Selector(Type = SelectorType.PartialLinkText, Value = "Main Page")]
+    public CustomElement MainPageLink { get; set; }
+
     …
 }
 ```

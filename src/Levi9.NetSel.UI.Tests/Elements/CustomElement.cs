@@ -18,8 +18,7 @@ namespace Levi9.NetSel.UI.Tests.Elements
         {
             try
             {
-                WebElement.GetAttribute("");
-                return true;
+                return WebElement.Displayed;
             }
             catch
             {

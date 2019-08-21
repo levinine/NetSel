@@ -36,7 +36,7 @@ namespace Levi9.NetSel.UI.Tests.Tests
 
             _pageWithCustomElement.CreateAccountLink.CustomClick();
 
-            Assert.False(_pageWithCustomElement.CreateAccountLink.CustomIsPresent());
+            Assert.True(_pageWithCustomElement.CreateAccountLink.CustomIsPresent());
         }
 
         public void Dispose()

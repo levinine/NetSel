@@ -81,9 +81,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Elements\CustomElement.cs" />
     <Compile Include="PageFactory\PageExample.cs" />
+    <Compile Include="PageFactory\PageWithCustomElementExample.cs" />
     <Compile Include="Tests\TestExample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\TestWithCustomElementExample.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

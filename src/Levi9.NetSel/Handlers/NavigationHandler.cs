@@ -30,7 +30,7 @@ namespace Levi9.NetSel.Handlers
         /// Method to navigate to page.
         /// </summary>
         /// <exception cref="ArgumentNullException">Throws in case where Base URL is not provided and cannot be found in configuration file.</exception>
-        public void NavigateTo()
+        public void GoToPage()
         {
             _webDriver.Navigate().GoToUrl($"{_baseUrl}{_path ?? string.Empty}");
         }

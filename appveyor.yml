@@ -7,25 +7,26 @@ branches:
 #skip_commits:
 # files:
 #   - dir/*
-  
+# Build worker image (VM template)
+image: Visual Studio 2017
+
 clone_folder: C:\netsel1
 
 environment:
   COVERALLS_REPO_TOKEN:
     secure: h6mvV5hoQ4GdIDvrY2fUEoNFFg94glGed
-    
+
 install:
 - choco install googlechrome
 
 before_build:
-- cmd: >-
-    cd src
-    
-    nuget restore
-    
-build:
-  project: src/Levi9.NetSel.sln
-  verbosity: minimal
+  - dotnet restore .\src\Levi9.NetSel.sln
+  - dotnet restore .\src\Levi9.NetSel.UI.Tests\Levi9.NetSel.UI.Tests.csproj
+  - dotnet restore .\src\Levi9.NetSel.Unit.Tests\Levi9.NetSel.Unit.Tests.csproj
+  - nuget restore .\src\Levi9.NetSel.sln
+  
+build:         
+  project: .\src\Levi9.NetSel.sln
   
 #after_test:
 #- ps: >-
@@ -36,11 +37,11 @@ build:
 #    .\packages\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover --input .\coverage-results\results.xml --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_JOB_ID
   
 after_build:
-- cmd: >-
-    nuget pack Levi9.NetSel\Levi9.NetSel.nuspec -Version %appveyor_build_version%
+ - cmd: >-
+    nuget pack .\src\Levi9.NetSel\Levi9.NetSel.nuspec -Version %appveyor_build_version%
     
 artifacts:
-- path: src/Levi9.NetSel.2.*.nupkg
+- path: .\Levi9.NetSel.2.*.nupkg
   name: Levi9.NetSel
   
 deploy: off

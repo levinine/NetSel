@@ -1,6 +1,6 @@
 # NetSel 2.0
 
-[![Build status](https://ci.appveyor.com/api/projects/status/gov5i86kedol4ur7/branch/master?svg=true)](https://ci.appveyor.com/project/Milan/netsel-2307t/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/pmahsjio4s9kom78/branch/master?svg=true)](https://ci.appveyor.com/project/uxi187/netsel/branch/master)
 [![NuGet version](https://badge.fury.io/nu/Levi9.NetSel.svg)](https://badge.fury.io/nu/Levi9.NetSel)
 
 

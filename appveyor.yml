@@ -47,7 +47,7 @@ artifacts:
 deploy:
   provider: NuGet
   api_key:
-    secure: oy2gehtu2zm7a3kvnruauttlnqoddcjuhitlpwoanv6fdq
+    secure: KO+rsyV9z57BUolv+sMzdQqAk5ABOXVtNGiI2NeoEC5uGXIS9WE1UxETP9oDtLeo
   artifact: /.*\.nupkg/
 
 notifications:

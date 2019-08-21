@@ -44,7 +44,7 @@ artifacts:
 - path: .\Levi9.NetSel.2.*.nupkg
   name: Levi9.NetSel
   
-deploy: off
+deploy:
   provider: NuGet
   api_key:
     secure: vn0m2bnjvvd0602qv3kx88y2

@@ -8,19 +8,24 @@
 
 NetSel is easy for setting up the project with defined elements and methods for manipulating with elements on pages and helpers that provide us with most used methods as Wait, take Screenshot and many more.
 
-**Install and setup NetSel**
+NetSel can be added as a _Nuget package_ to the existing project or can be obtained through _NetSel project template_. 
 
-In order to create a new project, go to File -> New -> Project. Select Class Library, name the project and browse location and create.
+NetSel project template is distributed as a Visual Studio extension.
+
+##### Use NetSel in your project by adding NuGet package
 
 Make sure your user is granted with the access to *https://nuget.com* and Package source in NuGet Package Manager for your solution is set to *https://www.nuget.org/api/v2*
-
-In this way, you will be able to receive NetSel testing framework updates.
-
-To add NetSel in your project by adding NuGet package:
 
     Right-click on References and Manage NuGet packages…
     Select above mentioned NuGet as the Package source
     Find Levi9.NetSel and install it
+
+##### Use NetSel by creating project from template
+
+    Right-click on Extensions and search for `NetSel`
+    Download and install Levi9.NetSel.Template.
+
+To create a new project, go to File -> New -> Project. Select installed template, name the project and browse location and create.
 
 ## Examples
 

@@ -44,7 +44,11 @@ artifacts:
 - path: .\Levi9.NetSel.2.*.nupkg
   name: Levi9.NetSel
   
-deploy: off
+deploy:
+  provider: NuGet
+  api_key:
+    secure: mFy9s4WsrHTm3aBLlMeBEW7pesMNVwRsvseKMYpfwUdJdWmkNfnHePWOM8oLHB8G
+  artifact: /.*\.nupkg/
 
 notifications:
 - provider: Email

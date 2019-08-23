@@ -38,17 +38,13 @@ build:
   
 after_build:
  - cmd: >-
-    nuget pack .\src\Levi9.NetSel\Levi9.NetSel.nuspec -Version %appveyor_build_version%
+    nuget pack .\src\Levi9.NetSel\Levi9.NetSel.csproj -Version %appveyor_build_version%
     
 artifacts:
 - path: .\Levi9.NetSel.2.*.nupkg
   name: Levi9.NetSel
   
-deploy:
-  provider: NuGet
-  api_key:
-    secure: mFy9s4WsrHTm3aBLlMeBEW7pesMNVwRsvseKMYpfwUdJdWmkNfnHePWOM8oLHB8G
-  artifact: /.*\.nupkg/
+deploy: off
 
 notifications:
 - provider: Email

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Levi9.NetSel.Elements;
+using Levi9.NetSel.Internal;
 using Levi9.NetSel.Proxies;
 
 namespace Levi9.NetSel.Builders
@@ -64,13 +65,16 @@ namespace Levi9.NetSel.Builders
             return _supportedTypesCatalog[elementType].Invoke(proxy);
         }
 
+        /// <summary>
+        /// Builds composite element.
+        /// </summary>
+        /// <param name="elementType">Type of composite element.</param>
+        /// <param name="proxy">Instance of NetSelElementProxy.</param>
+        /// <returns>Object.</returns>
         public object BuildCompositeElement(Type elementType, NetSelElementProxy proxy)
         {
-            if (elementType.BaseType != typeof(CompositeElement))
-            {
-                if (elementType.BaseType.GetGenericArguments().Any() && elementType.BaseType.GetGenericArguments()[0].BaseType != typeof(CompositeElement))
-                    throw new NotSupportedException($"Type {elementType} is not supported");
-            }
+            if (!elementType.IsCompositeType())
+                throw new NotSupportedException($"Type {elementType} is not supported");
 
             return Activator.CreateInstance(elementType, proxy);
         }

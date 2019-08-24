@@ -15,6 +15,13 @@ namespace Levi9.NetSel.Builders
         /// <param name="proxy">Instance of NetSelElementProxy.</param>
         /// <returns>Object.</returns>
         object BuildElement(Type elementType, NetSelElementProxy proxy);
+
+        /// <summary>
+        /// Builds new composite element.
+        /// </summary>
+        /// <param name="elementType">Type of composite element.</param>
+        /// <param name="proxy">Instance of NetSelElementProxy.</param>
+        /// <returns>Object.</returns>
         object BuildCompositeElement(Type elementType, NetSelElementProxy proxy);
     }
 }

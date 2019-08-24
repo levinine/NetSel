@@ -11,11 +11,9 @@ namespace Levi9.NetSel.UI.Tests.CustomElements
 {
     public class CollectionCompositeElement : CompositeElement
     {
+        public CollectionCompositeElement(NetSelElementProxy proxy) : base(proxy) { }
+
         [Selector(Type = SelectorType.TagName, Value = "h2")]
         public TextElement Headings { get; set; }
-
-        public CollectionCompositeElement(NetSelElementProxy proxy) : base(proxy)
-        {
-        }
     }
 }

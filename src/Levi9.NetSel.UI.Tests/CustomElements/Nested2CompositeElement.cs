@@ -11,11 +11,9 @@ namespace Levi9.NetSel.UI.Tests.CustomElements
 {
     public class Nested2CompositeElement : CompositeElement
     {
+        public Nested2CompositeElement(NetSelElementProxy proxy) : base(proxy) { }
+
         [Selector(Type = SelectorType.TagName, Value = "a")]
         public ElementCollection<TextElement> Links { get; set; }
-
-        public Nested2CompositeElement(NetSelElementProxy proxy) : base(proxy)
-        {
-        }
     }
 }

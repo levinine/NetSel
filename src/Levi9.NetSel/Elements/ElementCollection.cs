@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Levi9.NetSel.Internal;
 using Levi9.NetSel.Proxies;
 using OpenQA.Selenium;
 
@@ -27,9 +28,19 @@ namespace Levi9.NetSel.Elements
         public T[] GetElements()
         {
             var elementList = new List<T>();
-            _proxy.GetWebElements().ForEach(element => elementList
-                .Add((T)PageFactory.GetConfiguration().ElementsBuilder
-                    .BuildElement(typeof(T), new NetSelElementProxy(() => element))));
+
+            if (typeof(T).IsCompositeType())
+            {
+                _proxy.GetWebElements().ForEach(element => elementList
+                    .Add((T)PageFactory.GetConfiguration().ElementsBuilder
+                        .BuildCompositeElement(typeof(T), new NetSelElementProxy(_proxy.GetWebDriver(), () => element))));
+            }
+            else
+            {
+                _proxy.GetWebElements().ForEach(element => elementList
+                    .Add((T)PageFactory.GetConfiguration().ElementsBuilder
+                        .BuildElement(typeof(T), new NetSelElementProxy(_proxy.GetWebDriver(), () => element))));
+            }
             return elementList.ToArray();
         }
 

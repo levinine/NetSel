@@ -57,7 +57,7 @@ namespace Levi9.NetSel.Unit.Tests
 
             foreach (var type in assemblyTypes.ToList())
             {
-                if (type.IsDefined(typeof(CompilerGeneratedAttribute), false) || type == typeof(ElementCollection<>) || type == typeof(NetSelElement))
+                if (type.IsDefined(typeof(CompilerGeneratedAttribute), false) || type == typeof(ElementCollection<>) || type == typeof(NetSelElement) || type == typeof(CompositeElement))
                     continue;
 
                 Assert.Null(Record.Exception(() => _elementsBuilder.BuildElement(type, new NetSelElementProxy(Mock.Of<IWebDriver>(), Mock.Of<By>()))));

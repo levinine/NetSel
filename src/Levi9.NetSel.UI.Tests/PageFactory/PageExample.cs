@@ -10,12 +10,6 @@ namespace Levi9.NetSel.UI.Tests.PageFactory
         [Navigation(BaseUrl = "https://en.wikipedia.org/", Path = "wiki/Main_Page")]
         public NavigationHandler Navigation { get; set; }
 
-        [Selector(Type = SelectorType.Id, Value = "button1")]
-        public ClickableElement ClickMeButton { get; set; }
-
-        [Selector(Type = SelectorType.Id, Value = "button1")]
-        public ElementCollection<ClickableElement> ButtonCollection { get; set; }
-
         [Selector(Type = SelectorType.Id, Value = "content")]
         public CustomCompositeElement BodyContent { get; set; }
     }

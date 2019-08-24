@@ -15,7 +15,7 @@ namespace Levi9.NetSel.UI.Tests.Tests
         public TestExample()
         {
             var options = new ChromeOptions();
-//            options.AddArgument("--headless");
+            options.AddArgument("--headless");
 
             _driver = new ChromeDriver(options);
             _homePage = NetSel.PageFactory.CreatePage<PageExample>(_driver);
@@ -26,16 +26,15 @@ namespace Levi9.NetSel.UI.Tests.Tests
         {
             _homePage.Navigation.GoToPage();
 
-            Assert.Throws<WebDriverTimeoutException>(() => _homePage.ButtonCollection.WaitFor(TimeSpan.FromSeconds(15)).UntilCollectionNotContainsElements());
+            Assert.Throws<WebDriverTimeoutException>(() => _homePage.BodyContent.TableColumns.WaitFor(TimeSpan.FromSeconds(5)).UntilCollectionNotContainsElements());
         }
 
         [Fact]
         public void TestElementWaitUntilClickable()
         {
             _homePage.Navigation.GoToPage();
-            _homePage.BodyContent.Title.GetText();
-            var text = _homePage.BodyContent.Banner.Text;
-            var length = _homePage.BodyContent.Banner.UnorderedList.Links.GetElements().Length;
+            Assert.Equal(15, _homePage.BodyContent.Banner.Links.GetElements().Length);
+            Assert.Equal(9, _homePage.BodyContent.Banner.UnorderedList.Links.GetElements().Length);
         }
 
         public void Dispose()

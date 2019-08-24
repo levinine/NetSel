@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using Levi9.NetSel.Attributes;
 using Levi9.NetSel.Builders;
 using Levi9.NetSel.Elements;
+using Levi9.NetSel.Internal;
 using Levi9.NetSel.Proxies;
 using OpenQA.Selenium;
 
@@ -45,110 +46,47 @@ namespace Levi9.NetSel.Extensions
         {
             configuration.CreatePageAction = (resultClass, driver, parentProperty) =>
             {
-                foreach (var propertyInfo in resultClass.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+                NetSelElementProxy GetElementProxy(PropertyInfo property)
+                {
+                    var selector = property.GetCustomAttribute<SelectorAttribute>().MapToSeleniumBy();
+
+                    if (parentProperty == null)
+                        return new NetSelElementProxy(driver, selector);
+
+                    var locateFunction = resultClass.GetType()
+                        .GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+                        .First(x => x.Name == "LocateFunction").GetValue(resultClass);
+
+                    var parentSelector = parentProperty.GetCustomAttribute<SelectorAttribute>().MapToSeleniumBy();
+
+                    if (locateFunction != null)
+                    {
+                        return new NetSelElementProxy(driver,
+                            () => ((Func<IWebElement>)locateFunction).Invoke().FindElement(parentSelector), selector);
+                    }
+                    return new NetSelElementProxy(driver, () => driver.FindElement(parentSelector), selector);
+                }
+
+                foreach (var propertyInfo in resultClass.GetType().GetProperties())
                 {
                     if (propertyInfo.GetCustomAttribute<SelectorAttribute>() != null)
                     {
-                        bool IsElementComposite(PropertyInfo property)
+                        if (propertyInfo.PropertyType.IsCompositeType())
                         {
-                            return property.PropertyType.BaseType == typeof(CompositeElement);
-                        }
-
-                        bool IsCollectionOfComposite(PropertyInfo property)
-                        {
-                            if (property.PropertyType.GetGenericArguments().Any())
-                            {
-                                return property.PropertyType.GetGenericArguments()[0].BaseType == typeof(CompositeElement);
-                            }
-
-                            return false;
-                        }
-
-                        bool IsClassComposite(object resClass)
-                        {
-                            return resClass.GetType().BaseType == typeof(CompositeElement);
-                        }
-
-                        bool IsClassCollectionOfComposite(object resClass)
-                        {
-                            if (resClass.GetType().GetGenericArguments().Any())
-                            {
-                                return resultClass.GetType().GetGenericArguments()[0].BaseType == typeof(CompositeElement);
-                            }
-
-                            return false;
-                        }
-
-                        if (IsElementComposite(propertyInfo) || IsCollectionOfComposite(propertyInfo))
-                        {
-                            if (!IsClassComposite(resultClass) && !IsClassCollectionOfComposite(resultClass))
-                            {
-                                propertyInfo.SetValue(resultClass,
+                            // Build composite elements
+                            propertyInfo.SetValue(resultClass,
                                     configuration.ElementsBuilder?.BuildCompositeElement(propertyInfo.PropertyType,
-                                        new NetSelElementProxy(driver,
-                                            propertyInfo.GetCustomAttribute<SelectorAttribute>().MapToSeleniumBy())));
-                            }
-                            else
-                            {
-                                var locateFunction = resultClass.GetType()
-                                    .GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
-                                    .First(x => x.Name == "LocateFunction").GetValue(resultClass);
+                                        GetElementProxy(propertyInfo)));
 
-                                Func<IWebElement> func;
-
-                                var selector = propertyInfo.GetCustomAttribute<SelectorAttribute>().MapToSeleniumBy();
-                                var parentSelector = parentProperty.GetCustomAttribute<SelectorAttribute>().MapToSeleniumBy();
-
-                                if (locateFunction != null)
-                                {
-                                    func = () =>
-                                        ((Func<IWebElement>)locateFunction).Invoke().FindElement(parentSelector);
-                                }
-                                else
-                                {
-                                    func = () => driver.FindElement(parentSelector);
-                                }
-
-                                propertyInfo.SetValue(resultClass,
-                                    configuration.ElementsBuilder?.BuildCompositeElement(propertyInfo.PropertyType,
-                                        new NetSelElementProxy(func, selector)));
-                            }
+                            // Build composite element properties
                             configuration.CreatePageAction(propertyInfo.GetValue(resultClass), driver, propertyInfo);
                             continue;
                         }
 
-                        if (parentProperty == null)
-                        {
-                            propertyInfo.SetValue(resultClass,
-                                configuration.ElementsBuilder?.BuildElement(propertyInfo.PropertyType,
-                                    new NetSelElementProxy(driver,
-                                        propertyInfo.GetCustomAttribute<SelectorAttribute>().MapToSeleniumBy())));
-                        }
-                        else
-                        {
-                            var locateFunction = resultClass.GetType()
-                                .GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
-                                .First(x => x.Name == "LocateFunction").GetValue(resultClass);
-
-                            Func<IWebElement> func;
-
-                            var selector = propertyInfo.GetCustomAttribute<SelectorAttribute>().MapToSeleniumBy();
-                            var parentSelector = parentProperty.GetCustomAttribute<SelectorAttribute>().MapToSeleniumBy();
-
-                            if (locateFunction != null)
-                            {
-                                func = () =>
-                                    ((Func<IWebElement>)locateFunction).Invoke().FindElement(parentSelector);
-                            }
-                            else
-                            {
-                                func = () => driver.FindElement(parentSelector);
-                            }
-
-                            propertyInfo.SetValue(resultClass,
+                        // Build non-composite elements
+                        propertyInfo.SetValue(resultClass,
                             configuration.ElementsBuilder?.BuildElement(propertyInfo.PropertyType,
-                                new NetSelElementProxy(func, selector)));
-                        }
+                                GetElementProxy(propertyInfo)));
                     }
                     else if (propertyInfo.GetCustomAttribute<NavigationAttribute>() != null)
                     {
@@ -159,14 +97,12 @@ namespace Levi9.NetSel.Extensions
                     }
                     else if (propertyInfo.GetCustomAttribute<WindowAttribute>() != null)
                     {
-                        var attr = propertyInfo.GetCustomAttribute<WindowAttribute>();
                         propertyInfo.SetValue(resultClass,
                             configuration.HandlerBuilder?.BuildHandler(propertyInfo.PropertyType,
                                 new WindowHandlerProxy(driver)));
                     }
                 }
             };
-
             return configuration;
         }
     }

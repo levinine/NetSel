@@ -11,6 +11,8 @@ namespace Levi9.NetSel.UI.Tests.CustomElements
 {
     public class CustomCompositeElement : CompositeElement
     {
+        public CustomCompositeElement(NetSelElementProxy proxy) : base(proxy) { }
+
         [Selector(Type = SelectorType.Id, Value = "firstHeading")]
         public TextElement Title { get; set; }
 
@@ -19,9 +21,5 @@ namespace Levi9.NetSel.UI.Tests.CustomElements
 
         [Selector(Type = SelectorType.TagName, Value = "td")]
         public ElementCollection<CollectionCompositeElement> TableColumns { get; set; }
-
-        public CustomCompositeElement(NetSelElementProxy proxy) : base(proxy)
-        {
-        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Levi9.NetSel.Elements;
 using Levi9.NetSel.Proxies;
 
@@ -61,6 +62,17 @@ namespace Levi9.NetSel.Builders
                 throw new NotSupportedException($"Type {elementType} is not supported");
 
             return _supportedTypesCatalog[elementType].Invoke(proxy);
+        }
+
+        public object BuildCompositeElement(Type elementType, NetSelElementProxy proxy)
+        {
+            if (elementType.BaseType != typeof(CompositeElement))
+            {
+                if (elementType.BaseType.GetGenericArguments().Any() && elementType.BaseType.GetGenericArguments()[0].BaseType != typeof(CompositeElement))
+                    throw new NotSupportedException($"Type {elementType} is not supported");
+            }
+
+            return Activator.CreateInstance(elementType, proxy);
         }
     }
 }

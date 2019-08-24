@@ -1,4 +1,5 @@
-﻿using Levi9.NetSel.Proxies;
+﻿using System;
+using Levi9.NetSel.Proxies;
 using OpenQA.Selenium;
 
 namespace Levi9.NetSel.Elements
@@ -28,6 +29,8 @@ namespace Levi9.NetSel.Elements
         {
             return WebElement.GetAttribute(attribute);
         }
+
+        protected virtual Func<IWebElement> LocateFunction => _proxy.GetLocateFunc();
 
         /// <summary>
         /// Returns new instance of IWebElement.

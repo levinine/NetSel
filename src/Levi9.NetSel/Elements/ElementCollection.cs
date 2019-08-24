@@ -29,7 +29,7 @@ namespace Levi9.NetSel.Elements
             var elementList = new List<T>();
             _proxy.GetWebElements().ForEach(element => elementList
                 .Add((T)PageFactory.GetConfiguration().ElementsBuilder
-                    .BuildElement(typeof(T), new NetSelElementProxy(element))));
+                    .BuildElement(typeof(T), new NetSelElementProxy(() => element))));
             return elementList.ToArray();
         }
 

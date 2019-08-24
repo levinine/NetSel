@@ -81,6 +81,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomElements\CollectionCompositeElement.cs" />
+    <Compile Include="CustomElements\CustomCompositeElement.cs" />
+    <Compile Include="CustomElements\Nested2CompositeElement.cs" />
+    <Compile Include="CustomElements\NestedCompositeElement.cs" />
     <Compile Include="Elements\CustomElement.cs" />
     <Compile Include="PageFactory\PageExample.cs" />
     <Compile Include="PageFactory\PageWithCustomElementExample.cs" />

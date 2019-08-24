@@ -50,7 +50,7 @@ namespace Levi9.NetSel
         {
             var resultClass = new T();
 
-            _configuration.CreatePageAction.Invoke(resultClass, driver);
+            _configuration.CreatePageAction.Invoke(resultClass, driver, null);
 
             return resultClass;
         }

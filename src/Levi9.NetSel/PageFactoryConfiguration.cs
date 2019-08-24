@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Levi9.NetSel.Builders;
 using OpenQA.Selenium;
 
@@ -22,6 +23,6 @@ namespace Levi9.NetSel
         /// <summary>
         /// Property CreatePageAction.
         /// </summary>
-        public Action<object, IWebDriver> CreatePageAction { get; set; }
+        public Action<object, IWebDriver, PropertyInfo> CreatePageAction { get; set; }
     }
 }

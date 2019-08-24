@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
@@ -7,9 +8,9 @@ namespace Levi9.NetSel.Proxies
 {
     public class NetSelElementProxy
     {
-        private IWebElement _webElement;
-        private readonly IWebDriver _webDriver;
         private readonly By _elementSelector;
+        private readonly Func<IWebElement> _locateElementFunction;
+        private IWebDriver _webDriver;
 
         /// <summary>
         /// Initializes a new instance of the NetSelElementProxy class.
@@ -25,27 +26,53 @@ namespace Levi9.NetSel.Proxies
         /// <summary>
         /// Initializes a new instance of the NetSelElementProxy class.
         /// </summary>
-        /// <param name="webElement">Instance of IWebElement.</param>
-        public NetSelElementProxy(IWebElement webElement)
+        /// <param name="locateElementFunction">Function required to locate an element.</param>
+        public NetSelElementProxy(Func<IWebElement> locateElementFunction)
         {
-            _webElement = webElement;
-            _webDriver = ((IWrapsDriver)webElement).WrappedDriver;
+            _locateElementFunction = locateElementFunction;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the NetSelElementProxy class.
+        /// </summary>
+        /// <param name="locateElementFunction">Function required to locate an element.</param>
+        public NetSelElementProxy(Func<IWebElement> locateElementFunction, By selector)
+        {
+            _locateElementFunction = locateElementFunction;
+            _elementSelector = selector;
         }
 
         /// <summary>
         /// Returns instance of IWebElement.
         /// </summary>
+        public IWebElement GetWebElement()
+        {
+            if (_locateElementFunction == null)
+                return _webDriver.FindElement(_elementSelector);
 
-        public IWebElement GetWebElement() => _webElement ?? _webDriver.FindElement(_elementSelector);
+            _webDriver = ((IWrapsDriver) _locateElementFunction.Invoke()).WrappedDriver;
+            return _elementSelector == null ? 
+                _locateElementFunction.Invoke() :
+                _locateElementFunction.Invoke().FindElement(_elementSelector);
+        }
 
         /// <summary>
         /// Returns list of IWebElements.
         /// </summary>
-        public List<IWebElement> GetWebElements() => _webDriver.FindElements(_elementSelector).ToList();
+        public List<IWebElement> GetWebElements()
+        {
+            if (_locateElementFunction == null)
+                return _webDriver.FindElements(_elementSelector).ToList();
+
+            _webDriver = ((IWrapsDriver)_locateElementFunction.Invoke()).WrappedDriver;
+            return _locateElementFunction.Invoke().FindElements(_elementSelector).ToList();
+        }
 
         /// <summary>
         /// Returns instance of IWebDriver.
         /// </summary>
         public IWebDriver GetWebDriver() => _webDriver;
+
+        public Func<IWebElement> GetLocateFunc() => _locateElementFunction;
     }
 }

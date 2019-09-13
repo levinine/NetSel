@@ -37,5 +37,14 @@ namespace Levi9.NetSel.Elements
         {
             return WebElement.Enabled;
         }
+
+        /// <summary>
+        /// Returns display text of an element. 
+        /// </summary>
+        /// <returns>Display text of an element.</returns>
+        public string GetText()
+        {
+            return WebElement.Text;
+        }
     }
 }

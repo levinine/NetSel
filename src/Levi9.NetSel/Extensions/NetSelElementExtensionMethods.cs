@@ -1,5 +1,6 @@
 ﻿using Levi9.NetSel.Elements;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 
 namespace Levi9.NetSel.Extensions
 {
@@ -12,9 +13,15 @@ namespace Levi9.NetSel.Extensions
         /// Method to focus web element.
         /// </summary>
         /// <param name="webElement">Instance of NetSelElement.</param>
-        public static void FocusElement(this NetSelElement webElement)
+        public static void FocusElement<T>(this T webElement) where T : NetSelElement
         {
-            ((IJavaScriptExecutor)webElement.Driver).ExecuteScript("arguments[0].focus();", webElement);
+            var action = new Actions(webElement.Driver)
+                .MoveToElement(webElement.WebElement);
+
+            if (typeof(T) == typeof(InputElement))
+                action.Click();
+
+            action.Perform();
         }
     }
 }

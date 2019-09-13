@@ -15,7 +15,7 @@ namespace Levi9.NetSel.UI.Tests.Tests
         public TestExample()
         {
             var options = new ChromeOptions();
-            options.AddArgument("--headless");
+            //options.AddArgument("--headless");
 
             _driver = new ChromeDriver(options);
             _homePage = NetSel.PageFactory.CreatePage<PageExample>(_driver);
@@ -35,6 +35,15 @@ namespace Levi9.NetSel.UI.Tests.Tests
             _homePage.Navigation.GoToPage();
 
             _homePage.ClickMeButton.WaitFor(TimeSpan.FromSeconds(5)).Until(Until.Clickable);
+        }
+
+        [Fact]
+        public void TestElementFocus()
+        {
+            _homePage.Navigation.GoToPage();
+
+            _homePage.NameInput.FocusElement();
+            _homePage.BikeCheckbox.FocusElement();
         }
 
         public void Dispose()

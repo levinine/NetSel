@@ -12,6 +12,12 @@ namespace Levi9.NetSel.UI.Tests.PageFactory
         [Selector(Type = SelectorType.Id, Value = "button1")]
         public ClickableElement ClickMeButton { get; set; }
 
+        [Selector(Type = SelectorType.Id, Value = "et_pb_contact_name_0")]
+        public InputElement NameInput { get; set; }
+
+        [Selector(Type = SelectorType.CssSelector, Value = "input[value='Bike']")]
+        public SelectWebElement BikeCheckbox { get; set; }
+
         [Selector(Type = SelectorType.Id, Value = "button1")]
         public ElementCollection<ClickableElement> ButtonCollection { get; set; }
     }

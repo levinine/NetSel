@@ -27,6 +27,11 @@ Make sure your user is granted with the access to *https://nuget.com* and Packag
 
 To create a new project, go to File -> New -> Project. Select installed template, name the project and browse location and create.
 
+NetSel template comes with ChromeDriver installed. Other driver can be installed via NuGet Package Manager:
+    
+	Right-click on References and Manage NuGet packages… for desired project/solution
+    Search for desired driver (_e.g. GeckoDriver_) and install it
+
 ## Examples
 
 #### Simple page and test example

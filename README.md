@@ -4,7 +4,7 @@
 [![NuGet version](https://badge.fury.io/nu/Levi9.NetSel.svg)](https://badge.fury.io/nu/Levi9.NetSel)
 
 
-**NetSel** is helping us writing Selenium test scripts using .Net in an easier way. 
+**NetSel** is OpenSource Test Automation framework developed within Levi9, based on Selenium and C#, which enables common/frequently used tests collections creation and tests standardization. Framework has modular architecture which is based on idea of code reuse, encapsulation and object-oriented concepts.  
 
 NetSel is easy for setting up the project with defined elements and methods for manipulating with elements on pages and helpers that provide us with most used methods as Wait, take Screenshot and many more.
 

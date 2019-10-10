@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Levi9.NetSel.Elements;
 using Levi9.NetSel.WaitConditions;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 namespace Levi9.NetSel.Extensions
@@ -22,6 +23,21 @@ namespace Levi9.NetSel.Extensions
             return condition.GetCondition().Invoke(elements);
         }
 
+        private static void Wait<T>(Wait<T> wait, Func<IWebDriver, bool> waitCondition)
+        {
+            try
+            {
+                wait.DriverWait.Until(waitCondition);
+            }
+            catch (WebDriverTimeoutException e)
+            {
+                if (!string.IsNullOrEmpty(wait.Reason))
+                    throw new WebDriverTimeoutException(wait.Reason, e);
+
+                throw e;
+            }
+        }
+
         /// <summary>
         /// Method to create new instance of Wait.
         /// </summary>
@@ -30,7 +46,7 @@ namespace Levi9.NetSel.Extensions
         /// <returns>Instance of Wait.</returns>
         public static Wait<ICollection<NetSelElement>> WaitFor(this NetSelElement elem, TimeSpan timeoutTime)
         {
-            return WaitFor(new[] {elem}, timeoutTime);
+            return WaitFor(new[] { elem }, timeoutTime);
         }
 
         /// <summary>
@@ -60,13 +76,25 @@ namespace Levi9.NetSel.Extensions
         }
 
         /// <summary>
+        /// Method to add custom reason for exception message.
+        /// </summary>
+        /// <param name="wait">Instance of Wait.</param>
+        /// <param name="message">Exception message.</param>
+        /// <returns>Instance of Wait.</returns>
+        public static Wait<ElementCollection<T>> WithReason<T>(this Wait<ElementCollection<T>> wait, string message)
+        {
+            wait.Reason = message;
+            return wait;
+        }
+
+        /// <summary>
         /// Method to wait until specified conditions are fulfilled.
         /// </summary>
         /// <param name="wait">Instance of Wait.</param>
         /// <param name="conditions">Array of wait conditions.</param>
         public static void Until(this Wait<NetSelElement> wait, params IWaitCondition<NetSelElement>[] conditions)
         {
-            wait.DriverWait.Until(drv => conditions.EvaluateWaitConditions(wait.Element));
+            Wait(wait, drv => conditions.EvaluateWaitConditions(wait.Element));
         }
 
         /// <summary>
@@ -76,7 +104,7 @@ namespace Levi9.NetSel.Extensions
         /// <param name="conditions">Array of wait conditions.</param>
         public static void Until(this Wait<ICollection<NetSelElement>> wait, params IWaitCondition<ICollection<NetSelElement>>[] conditions)
         {
-            wait.DriverWait.Until(drv => conditions.EvaluateWaitConditions(wait.Element));
+            Wait(wait, drv => conditions.EvaluateWaitConditions(wait.Element));
         }
 
         /// <summary>
@@ -85,7 +113,7 @@ namespace Levi9.NetSel.Extensions
         /// <param name="wait">Instance of Wait.</param>
         public static void UntilCollectionContainsElements<T>(this Wait<ElementCollection<T>> wait)
         {
-            wait.DriverWait.Until(drv => new WaitCondition<ElementCollection<T>>(elements => elements.GetElements().Length != 0).EvaluateWaitCondition(wait.Element));
+            Wait(wait, drv => new WaitCondition<ElementCollection<T>>(elements => elements.GetElements().Length != 0).EvaluateWaitCondition(wait.Element));
         }
 
         /// <summary>
@@ -94,7 +122,7 @@ namespace Levi9.NetSel.Extensions
         /// <param name="wait">Instance of Wait.</param>
         public static void UntilCollectionNotContainsElements<T>(this Wait<ElementCollection<T>> wait)
         {
-            wait.DriverWait.Until(drv => new WaitCondition<ElementCollection<T>>(elements => elements.GetElements().Length == 0).EvaluateWaitCondition(wait.Element));
+            Wait(wait, drv => new WaitCondition<ElementCollection<T>>(elements => elements.GetElements().Length == 0).EvaluateWaitCondition(wait.Element));
         }
     }
 }

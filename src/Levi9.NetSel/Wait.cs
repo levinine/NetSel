@@ -27,5 +27,10 @@ namespace Levi9.NetSel
         /// Property Element.
         /// </summary>
         public T Element { get; set; }
+
+        /// <summary>
+        /// Property Reason.
+        /// </summary>
+        public string Reason { get; set; }
     }
 }

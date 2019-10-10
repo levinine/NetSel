@@ -26,7 +26,8 @@ namespace Levi9.NetSel.UI.Tests.Tests
         {
             _homePage.Navigation.GoToPage();
 
-            Assert.Throws<WebDriverTimeoutException>(() => _homePage.ButtonCollection.WaitFor(TimeSpan.FromSeconds(15)).UntilCollectionNotContainsElements());
+            var ex = Assert.Throws<WebDriverTimeoutException>(() => _homePage.ButtonCollection.WaitFor(TimeSpan.FromSeconds(10)).WithReason("Something went wrong.").UntilCollectionNotContainsElements());
+            Assert.Equal("Something went wrong.", ex.Message);
         }
 
         [Fact]
